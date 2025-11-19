@@ -48,4 +48,4 @@ logging:
 #Community
 community:
   path:
-    domain: http//:localhost:8080
+    domain: http://localhost:8080
