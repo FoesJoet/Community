@@ -49,3 +49,4 @@ logging:
 community:
   path:
     domain: http://localhost:8080
+    upload: C:\Users\Foes\Desktop\LT\learning_code\image

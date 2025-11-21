@@ -33,7 +33,7 @@ public class LoginController implements CommunityConstant {
 
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-    @Value("server.servlet.context-path")
+    @Value("${server.servlet.context-path}")
     private String ContextPath;
     @Autowired
     private Producer kaptchaProducer;
