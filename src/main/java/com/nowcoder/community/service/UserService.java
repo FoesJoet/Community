@@ -74,7 +74,7 @@ public class UserService implements CommunityConstant {
         user.setSalt(CommunityUtil.generateUUID().substring(0,5));
         user.setPassword(CommunityUtil.md5(user.getPassword()+user.getSalt()));
         user.setActivationCode(CommunityUtil.generateUUID());
-        user.setHeaderUrl(String.format("http://images.nowcoder.com/head/%dt.png",new Random().nextInt()));
+        user.setHeaderUrl(String.format("http://images.nowcoder.com/head/%dt.png",new Random().nextInt(1000)));
         user.setStatus(0);
         user.setType(0);
 
@@ -140,5 +140,9 @@ public class UserService implements CommunityConstant {
     }
     public void logout(String ticket){
         loginTicketMapper.updateStatus(ticket,1);
+    }
+
+    public LoginTicket findLoginTicket(String ticket){
+        return loginTicketMapper.selectByTicket(ticket);
     }
 }
