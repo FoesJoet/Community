@@ -1,5 +1,6 @@
 package com.nowcoder.community.controller;
 
+import com.nowcoder.community.annotation.LoginRequired;
 import com.nowcoder.community.entity.User;
 import com.nowcoder.community.service.UserService;
 import com.nowcoder.community.utils.CommunityUtil;
@@ -47,11 +48,12 @@ public class UserController {
 
     @Autowired
     private HostHolder hostHolder;
-
+    @LoginRequired
     @RequestMapping(value = "/setting",method = RequestMethod.GET)
     public String getSettingPage(){
         return "/site/setting";
     }
+    @LoginRequired
     @RequestMapping(value = "/upload",method = RequestMethod.POST)
     public String updateHeader(MultipartFile header, Model model){
         //文件验证
@@ -81,6 +83,7 @@ public class UserController {
         userService.updateHeader(user.getId(),filePath);
         return "redirect:/index";
     }
+
     @RequestMapping(value = "/header/{filename}",method = RequestMethod.GET)
     public void getHeaderImage(@PathVariable("filename") String filename, HttpServletResponse response){
         filename =uploadPath+"/"+filename;
@@ -97,6 +100,7 @@ public class UserController {
             logger.error("读取头像失败"+e.getMessage());
         }
     }
+    @LoginRequired
     @RequestMapping(value = "/updatepassword",method = RequestMethod.POST)
     public String updatePassword(Model model,String newPassword,String oldPassword,String confirmPassword){
         if(StringUtils.isBlank(oldPassword)){
